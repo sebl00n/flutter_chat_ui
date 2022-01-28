@@ -75,6 +75,7 @@ class Chat extends StatefulWidget {
   }) : super(key: key) {
     this.showUserAvatars = showUserAvatars ?? (message) => false;
   }
+
   Alignment? Function(types.Message message)? messageAlignment;
 
   /// See [Message.bubbleBuilder]
@@ -441,8 +442,9 @@ class _ChatState extends State<Chat> {
             child: Stack(
               children: [
                 Container(
-                  // color: const Color.fromARGB(255, 239, 234, 226),
-                  color: widget.theme.backgroundColor,
+                  color: Theme.of(context).brightness == Brightness.light
+                      ? Color.fromARGB(255, 239, 234, 226)
+                      : Color.fromARGB(255, 10, 20, 26),
                   child: Column(
                     children: [
                       Flexible(

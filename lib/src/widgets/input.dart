@@ -153,6 +153,7 @@ class _InputState extends State<Input> {
             child: Padding(
               padding: InheritedChatTheme.of(context).theme.inputPadding,
               child: Container(
+
                 padding: EdgeInsets.fromLTRB(
                   24 + _query.padding.left,
                   20,
@@ -186,7 +187,10 @@ class _InputState extends State<Input> {
                           hintText: InheritedL10n.of(context)
                               .l10n
                               .inputPlaceholder,
-                          fillColor: Theme.of(context).colorScheme.background
+                            fillColor: Theme.of(context).brightness == Brightness.light
+                                ? Colors.white
+                                : const Color.fromARGB(255,42, 57, 66),
+
                         ),
                         suggestionListDecoration: widget.suggestionListDecoration,
                         keyboardType: TextInputType.multiline,
