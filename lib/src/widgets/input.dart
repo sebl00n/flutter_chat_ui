@@ -152,77 +152,63 @@ class _InputState extends State<Input> {
           child: Focus(
             child: Padding(
               padding: InheritedChatTheme.of(context).theme.inputPadding,
-              child: Material(
-                borderRadius:
-                    InheritedChatTheme.of(context).theme.inputBorderRadius,
-                color:
-                    InheritedChatTheme.of(context).theme.inputBackgroundColor,
-                child: Container(
-                  padding: EdgeInsets.fromLTRB(
-                    24 + _query.padding.left,
-                    20,
-                    24 + _query.padding.right,
-                    20 + _query.viewInsets.bottom + _query.padding.bottom,
-                  ),
-                  child: Row(
-                    children: [
-                      if (widget.onAttachmentPressed != null) _leftWidget(),
-                      Expanded(
-                        child: FlutterMentions(
-                          appendSpaceOnAdd: true,
-                          onSubmitted: (value) => _handleSendPressed(),
-                          autofocus: true,
-                          cursorColor: InheritedChatTheme.of(context)
-                              .theme
-                              .inputTextCursorColor,
-                          decoration: InheritedChatTheme.of(context)
-                              .theme
-                              .inputTextDecoration
-                              .copyWith(
-                                hintStyle: InheritedChatTheme.of(context)
-                                    .theme
-                                    .inputTextStyle
-                                    .copyWith(
-                                      color: InheritedChatTheme.of(context)
-                                          .theme
-                                          .inputTextColor
-                                          .withOpacity(0.5),
-                                    ),
-                                hintText: InheritedL10n.of(context)
-                                    .l10n
-                                    .inputPlaceholder,
-                              ),
-                          suggestionListDecoration: widget.suggestionListDecoration,
-                          keyboardType: TextInputType.multiline,
-                          maxLines: 5,
-                          minLines: 1,
-                          onMentionAdd: (val) =>
-                              _textController.text += "${val['id']}",
-                          onMarkupChanged: (val) => _textController.text = val,
-                          onTap: widget.onTextFieldTap,
-                          style: InheritedChatTheme.of(context)
+              child: Container(
+                padding: EdgeInsets.fromLTRB(
+                  24 + _query.padding.left,
+                  20,
+                  24 + _query.padding.right,
+                  20
+                ),
+                child: Row(
+                  children: [
+                    if (widget.onAttachmentPressed != null) _leftWidget(),
+                    Expanded(
+                      child: FlutterMentions(
+                        appendSpaceOnAdd: true,
+                        onSubmitted: (value) => _handleSendPressed(),
+                        autofocus: true,
+                        cursorColor: InheritedChatTheme.of(context)
+                            .theme
+                            .inputTextCursorColor,
+                        decoration: InheritedChatTheme.of(context)
+                            .theme
+                            .inputTextDecoration
+                            .copyWith(
+                          hintStyle: InheritedChatTheme.of(context)
                               .theme
                               .inputTextStyle
                               .copyWith(
-                                color: InheritedChatTheme.of(context)
-                                    .theme
-                                    .inputTextColor,
-                              ),
-                          suggestionPosition: SuggestionPosition.Top,
-                          textCapitalization: TextCapitalization.sentences,
-                          mentions: widget.mentions?.isNotEmpty == true
-                              ? widget.mentions!
-                              : [Mention(trigger: '@')],
+                            color: InheritedChatTheme.of(context)
+                                .theme
+                                .inputTextColor
+                                .withOpacity(0.5),
+                          ),
+                          hintText: InheritedL10n.of(context)
+                              .l10n
+                              .inputPlaceholder,
+                          fillColor: Theme.of(context).colorScheme.background
                         ),
+                        suggestionListDecoration: widget.suggestionListDecoration,
+                        keyboardType: TextInputType.multiline,
+                        maxLines: 5,
+                        minLines: 1,
+                        onMentionAdd: (val) =>
+                            _textController.text += "${val['id']}",
+                        onMarkupChanged: (val) => _textController.text = val,
+                        onTap: widget.onTextFieldTap,
+                        suggestionPosition: SuggestionPosition.Top,
+                        textCapitalization: TextCapitalization.sentences,
+                        mentions: widget.mentions?.isNotEmpty == true
+                            ? widget.mentions!
+                            : [Mention(trigger: '@')],
                       ),
-                      Visibility(
-                        visible: _sendButtonVisible,
-                        child: SendButton(
-                          onPressed: _handleSendPressed,
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                    SizedBox(width: 8,),
+                    SendButton(
+                      enabled: _sendButtonVisible,
+                      onPressed: _handleSendPressed,
+                    ),
+                  ],
                 ),
               ),
             ),

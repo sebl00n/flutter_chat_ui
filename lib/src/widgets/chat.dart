@@ -441,6 +441,7 @@ class _ChatState extends State<Chat> {
             child: Stack(
               children: [
                 Container(
+                  // color: const Color.fromARGB(255, 239, 234, 226),
                   color: widget.theme.backgroundColor,
                   child: Column(
                     children: [

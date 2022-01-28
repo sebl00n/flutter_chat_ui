@@ -8,26 +8,22 @@ class SendButton extends StatelessWidget {
   const SendButton({
     Key? key,
     required this.onPressed,
+    this.enabled = true,
   }) : super(key: key);
 
   /// Callback for send button tap event
   final void Function() onPressed;
+  final bool enabled;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 24,
-      margin: const EdgeInsets.only(left: 16),
-      width: 24,
+    return CircleAvatar(
+      radius: 28,
       child: IconButton(
         icon: InheritedChatTheme.of(context).theme.sendButtonIcon != null
             ? InheritedChatTheme.of(context).theme.sendButtonIcon!
-            : Image.asset(
-                'assets/icon-send.png',
-                color: InheritedChatTheme.of(context).theme.inputTextColor,
-                package: 'flutter_chat_ui',
-              ),
-        onPressed: onPressed,
+            : const Icon(Icons.send),
+        onPressed: enabled ? onPressed : null,
         padding: EdgeInsets.zero,
         tooltip: InheritedL10n.of(context).l10n.sendButtonAccessibilityLabel,
       ),

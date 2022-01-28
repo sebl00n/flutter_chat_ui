@@ -257,16 +257,19 @@ class DefaultChatTheme extends ChatTheme {
     Color errorColor = error,
     Widget? errorIcon,
     Color inputBackgroundColor = neutral0,
-    BorderRadius inputBorderRadius = const BorderRadius.vertical(
-      top: Radius.circular(20),
+    BorderRadius inputBorderRadius = const BorderRadius.all(
+      Radius.circular(20),
     ),
     EdgeInsetsGeometry inputPadding = EdgeInsets.zero,
-    Color inputTextColor = neutral7,
+    Color inputTextColor = neutral0,
     Color? inputTextCursorColor,
+
     InputDecoration inputTextDecoration = const InputDecoration(
-      border: InputBorder.none,
-      contentPadding: EdgeInsets.zero,
-      isCollapsed: true,
+      filled: true,
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(32)),
+        borderSide: BorderSide.none
+      ),
     ),
     TextStyle inputTextStyle = const TextStyle(
       fontSize: 16,
