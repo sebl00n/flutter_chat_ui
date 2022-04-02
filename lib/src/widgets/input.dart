@@ -150,6 +150,7 @@ class _InputState extends State<Input> {
             ),
           },
           child: Focus(
+            autofocus: true,
             child: Padding(
               padding: InheritedChatTheme.of(context).theme.inputPadding,
               child: Material(
@@ -169,9 +170,6 @@ class _InputState extends State<Input> {
                       if (widget.onAttachmentPressed != null) _leftWidget(),
                       Expanded(
                         child: FlutterMentions(
-                          appendSpaceOnAdd: true,
-                          onSubmitted: (value) => _handleSendPressed(),
-                          autofocus: true,
                           cursorColor: InheritedChatTheme.of(context)
                               .theme
                               .inputTextCursorColor,
@@ -193,6 +191,7 @@ class _InputState extends State<Input> {
                                     .inputPlaceholder,
                               ),
                           suggestionListDecoration: widget.suggestionListDecoration,
+                          focusNode: _inputFocusNode,
                           keyboardType: TextInputType.multiline,
                           maxLines: 5,
                           minLines: 1,
